@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.example.myapplication.fragment.DaftarFilmFragment;
 import com.example.myapplication.fragment.FavoriteFragment;
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -16,13 +16,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Menambahkan DaftarFilmFragment secara default
+        // Inisialisasi BottomNavigationView
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
+
+        // Set listener untuk item selection
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                Fragment selectedFragment = null;
+
+                // Memilih fragmen berdasarkan item yang dipilih dengan if-else
+                if (item.getItemId() == R.id.nav_film) {
+                    selectedFragment = new DaftarFilmFragment(); // Ganti dengan fragmen daftar film
+                } else if (item.getItemId() == R.id.nav_favorite) {
+                    selectedFragment = new FavoriteFragment(); // Ganti dengan fragmen favorite
+                }
+
+                // Menampilkan fragmen yang dipilih
+                if (selectedFragment != null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, selectedFragment)
+                            .commit();
+                }
+
+                return true;
+            }
+        });
+
+        // Set default fragment saat aplikasi pertama kali dijalankan (opsional)
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new DaftarFilmFragment())
-                    .commit();
+            bottomNavigationView.setSelectedItemId(R.id.nav_film); // Menetapkan fragmen default
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
