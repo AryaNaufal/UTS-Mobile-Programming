@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!-- Heading "List Movie" -->
+    <TextView
+        android:id="@+id/text_heading_list_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="List Movie"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="start"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Scrollable film list -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/film_list_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- Film 1 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/image_film_1"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster_film_avengers_infinity_war"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_title_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Avenger Infinity War"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/image_film_1"
+                app:layout_constraintTop_toTopOf="@id/image_film_1"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Tombol Favorit -->
+            <Button
+                android:id="@+id/detail_movie_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:backgroundTint="#007bff"
+                android:text="Detail Movie"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/button_favorite_1"
+                app:layout_constraintTop_toBottomOf="@id/text_title_1" />
+
+            <!-- Tombol Detail Movie -->
+            <Button
+                android:id="@+id/button_favorite_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:text="❤ Favorit"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@id/detail_movie_1"
+                app:layout_constraintStart_toStartOf="@id/text_title_1"
+                app:layout_constraintTop_toBottomOf="@id/text_title_1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Film 2 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/image_film_2"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster_film_the_avengers"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_title_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="The Avengers"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/image_film_2"
+                app:layout_constraintTop_toTopOf="@id/image_film_2"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Tombol Favorit -->
+            <Button
+                android:id="@+id/detail_movie_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:backgroundTint="#007bff"
+                android:text="Detail Movie"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/button_favorite_2"
+                app:layout_constraintTop_toBottomOf="@id/text_title_2" />
+
+            <!-- Tombol Detail Movie -->
+            <Button
+                android:id="@+id/button_favorite_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:text="❤ Favorit"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@id/detail_movie_2"
+                app:layout_constraintStart_toStartOf="@id/text_title_2"
+                app:layout_constraintTop_toBottomOf="@id/text_title_2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Film 3 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/image_film_3"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster_film_avengers_doomsday"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_title_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Avengers: Doomsday"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/image_film_3"
+                app:layout_constraintTop_toTopOf="@id/image_film_3"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Tombol Favorit -->
+            <Button
+                android:id="@+id/detail_movie_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:backgroundTint="#007bff"
+                android:text="Detail Movie"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/button_favorite_3"
+                app:layout_constraintTop_toBottomOf="@id/text_title_3" />
+
+            <!-- Tombol Detail Movie -->
+            <Button
+                android:id="@+id/button_favorite_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:text="❤ Favorit"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@id/detail_movie_3"
+                app:layout_constraintStart_toStartOf="@id/text_title_3"
+                app:layout_constraintTop_toBottomOf="@id/text_title_3" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
