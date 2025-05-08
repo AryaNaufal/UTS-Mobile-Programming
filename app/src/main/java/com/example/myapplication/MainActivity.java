@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.example.myapplication.fragment.DaftarFilmFragment;
 import com.example.myapplication.fragment.FavoriteFragment;
+import com.example.myapplication.fragment.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -19,23 +21,21 @@ public class MainActivity extends AppCompatActivity {
         // Sembunyikan ActionBar bawaan
         getSupportActionBar().hide();
 
-        // Inisialisasi BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
 
-        // Set listener untuk item selection
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 Fragment selectedFragment = null;
 
-                // Memilih fragmen berdasarkan item yang dipilih dengan if-else
                 if (item.getItemId() == R.id.nav_film) {
-                    selectedFragment = new DaftarFilmFragment(); // Ganti dengan fragmen daftar film
+                    selectedFragment = new DaftarFilmFragment();
                 } else if (item.getItemId() == R.id.nav_favorite) {
-                    selectedFragment = new FavoriteFragment(); // Ganti dengan fragmen favorite
+                    selectedFragment = new FavoriteFragment();
+                } else if (item.getItemId() == R.id.nav_profile) {
+                    selectedFragment = new ProfileFragment();
                 }
 
-                // Menampilkan fragmen yang dipilih
                 if (selectedFragment != null) {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, selectedFragment)
@@ -46,12 +46,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Set default fragment saat aplikasi pertama kali dijalankan (opsional)
         if (savedInstanceState == null) {
-            bottomNavigationView.setSelectedItemId(R.id.nav_film); // Menetapkan fragmen default
+            bottomNavigationView.setSelectedItemId(R.id.nav_film);
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,12 +62,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.nav_film) {
-            // Ganti fragment ke DaftarFilmFragment
             switchFragment(new DaftarFilmFragment());
             return true;
         } else if (id == R.id.nav_favorite) {
-            // Ganti fragment ke FavoriteFragment
             switchFragment(new FavoriteFragment());
+            return true;
+        } else if (id == R.id.nav_profile) {
+            switchFragment(new ProfileFragment());
             return true;
         }
 
