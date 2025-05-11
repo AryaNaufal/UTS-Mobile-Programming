@@ -3,29 +3,43 @@ package com.example.myapplication.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.Gson;
+
 public class FilmModel implements Parcelable {
     private String title;
-    private int imageId;
+    private String imageUrl;  // <-- dari TMDB
     private String description;
     private String trailerUrl;
     private boolean favorite;
 
     // Constructor
-    public FilmModel(String title, int imageId, String description, String trailerUrl, boolean favorite) {
+    public FilmModel(String title, String imageUrl, String description, String trailerUrl, boolean favorite) {
         this.title = title;
-        this.imageId = imageId;
+        this.imageUrl = imageUrl;
         this.description = description;
         this.trailerUrl = trailerUrl;
         this.favorite = favorite;
     }
 
-    // Getters and Setters
+    public static FilmModel fromJson(String json) {
+        try {
+            return new Gson().fromJson(json, FilmModel.class);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String toJson() {
+        return new Gson().toJson(this);
+    }
+
+    // Getters
     public String getTitle() {
         return title;
     }
 
-    public int getImageId() {
-        return imageId;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public String getDescription() {
@@ -47,19 +61,19 @@ public class FilmModel implements Parcelable {
     // Parcelable implementation
     protected FilmModel(Parcel in) {
         title = in.readString();
-        imageId = in.readInt();
+        imageUrl = in.readString();
         description = in.readString();
         trailerUrl = in.readString();
-        favorite = in.readByte() != 0;  // Read the favorite boolean value
+        favorite = in.readByte() != 0;
     }
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeString(title);
-        parcel.writeInt(imageId);
+        parcel.writeString(imageUrl);
         parcel.writeString(description);
         parcel.writeString(trailerUrl);
-        parcel.writeByte((byte) (favorite ? 1 : 0));  // Write the favorite boolean value
+        parcel.writeByte((byte) (favorite ? 1 : 0));
     }
 
     @Override

@@ -14,7 +14,7 @@
         android:text="List Movie"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="?android:textColorPrimary"
         android:gravity="start"
         android:layout_marginBottom="10dp" />
 

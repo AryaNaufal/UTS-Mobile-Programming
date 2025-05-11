@@ -2,14 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_film"
-        android:title="Daftar Film"
-        android:titleTextColor="@color/selector_menu_item" />
+        android:title="Daftar Film" />
     <item
         android:id="@+id/nav_favorite"
-        android:title="Favorite"
-        android:titleTextColor="@color/selector_menu_item" />
+        android:title="Favorite" />
     <item
         android:id="@+id/nav_profile"
-        android:title="Profile"
-        android:titleTextColor="@color/selector_menu_item" />
+        android:title="Profile" />
 </menu>

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.model.FilmModel;
 import com.example.myapplication.R;
 
@@ -60,17 +61,61 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
     }
 
 
+//    @Override
+//    public void onBindViewHolder(@NonNull FilmViewHolder holder, int position) {
+//        FilmModel film = filmList.get(position);
+//
+//        holder.textTitle.setText(film.getTitle());
+//        holder.imageFilm.setImageResource(film.getImageId());
+//
+//        // Cek apakah film favorit
+//        boolean isFavorite = isFilmFavorite(film);
+//
+//        // Mengubah status favorit
+//        if (isFavoriteFragment) {
+//            holder.textFavoriteStatus.setText(film.isFavorite() ? "Favorit" : "Bukan Favorit");
+//
+//            if (film.isFavorite()) {
+//                holder.textFavoriteStatus.setTextColor(context.getResources().getColor(R.color.favorite_color));
+//            }
+//
+//            if (holder.buttonDeleteFavorite != null) {
+//                holder.buttonDeleteFavorite.setVisibility(View.VISIBLE);
+//                holder.buttonDeleteFavorite.setOnClickListener(v -> listener.onRemoveFromFavorites(film));
+//                holder.textFavoriteStatus.setTypeface(null, Typeface.BOLD);
+//            }
+//
+//        } else {
+//            holder.textTitle.setText(film.getTitle());
+//            holder.textFavoriteStatus.setText(film.isFavorite() ? "Favorit" : "");
+//            if (film.isFavorite()) {
+//                holder.textFavoriteStatus.setTextColor(context.getResources().getColor(R.color.favorite_color));
+//                holder.textFavoriteStatus.setTypeface(null, Typeface.BOLD);
+//            }
+//            holder.buttonFavorite.setOnClickListener(v -> {
+//                    listener.onAddToFavorites(film);
+//                notifyItemChanged(position);
+//            });
+//            holder.buttonDetail.setOnClickListener(v -> listener.onDetail(film));
+//        }
+//
+//        holder.itemView.setOnClickListener(v -> listener.onDetail(film));
+//    }
+
     @Override
     public void onBindViewHolder(@NonNull FilmViewHolder holder, int position) {
         FilmModel film = filmList.get(position);
 
         holder.textTitle.setText(film.getTitle());
-        holder.imageFilm.setImageResource(film.getImageId());
 
-        // Cek apakah film favorit
+        // Load image dari URL pakai Glide
+        Glide.with(context)
+                .load(film.getImageUrl())
+                .placeholder(R.drawable.poster_film_toy_story_1) // ganti sesuai kebutuhan
+                .into(holder.imageFilm);
+
         boolean isFavorite = isFilmFavorite(film);
 
-        // Mengubah status favorit
         if (isFavoriteFragment) {
             holder.textFavoriteStatus.setText(film.isFavorite() ? "Favorit" : "Bukan Favorit");
 
@@ -85,21 +130,23 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
             }
 
         } else {
-            holder.textTitle.setText(film.getTitle());
             holder.textFavoriteStatus.setText(film.isFavorite() ? "Favorit" : "");
             if (film.isFavorite()) {
                 holder.textFavoriteStatus.setTextColor(context.getResources().getColor(R.color.favorite_color));
                 holder.textFavoriteStatus.setTypeface(null, Typeface.BOLD);
             }
+
             holder.buttonFavorite.setOnClickListener(v -> {
-                    listener.onAddToFavorites(film);
+                listener.onAddToFavorites(film);
                 notifyItemChanged(position);
             });
+
             holder.buttonDetail.setOnClickListener(v -> listener.onDetail(film));
         }
 
         holder.itemView.setOnClickListener(v -> listener.onDetail(film));
     }
+
 
     @Override
     public int getItemCount() {
